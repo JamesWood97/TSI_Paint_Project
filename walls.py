@@ -47,7 +47,7 @@ class Wall:
 
 
 class Building:
-    def __init__(self, walls: set):
+    def __init__(self, walls: tuple | list | set = ()):
         self.walls = set([])
         for wall in walls:
             self.walls.add(wall)
