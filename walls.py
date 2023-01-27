@@ -108,13 +108,22 @@ class Wall:
             raise Exception("Attempted to remove", WallObject, "from", self,
                             "but the given WallObject was not on the wall")
 
-    def get_cost(self) -> float | int:
+    def get_cost(self) -> float:
         """
         Gets the cost to paint the wall
         :return: the cost
         """
         if self._has_paint:
             return self._area * self._paint.cost_per_litre * 1 / 12 * self.number_of_coats#average wall is approx 12m2, standard wall paint coveres 12-14m2 per liter, most walls need two coats, so 1.5-2 liters is a rough guide for a single wall.
+        return 0
+
+    def get_paint_litres(self) -> float | int:
+        """
+        Gets the amount of paint needed for the wall, assuming length and height are in meters
+        :return: the amount of paint needed in litres
+        """
+        if self._has_paint:
+            return self._area * 1 / 12 * self.number_of_coats#average wall is approx 12m2, standard wall paint coveres 12-14m2 per liter, most walls need two coats, so 1.5-2 liters is a rough guide for a single wall.
         return 0
 
     def set_paint(self, paint: Paint):
@@ -174,3 +183,17 @@ class Building:
         for wall in self.walls:
             total_cost += wall.get_cost()
         return total_cost
+
+    def get_paints_needed(self) -> dict:
+        """
+        Gets the total amount of all the walls in the building
+        :return: a dict containing a paint as a key and its corrisponding amount needed
+        """
+        paints_needed = {}
+        for wall in self.walls:
+            if wall.get_has_paint():
+                if wall.get_paint() in paints_needed:
+                    paints_needed[wall.get_paint()] += wall.get_paint_litres()
+                else:
+                    paints_needed[wall.get_paint()] = wall.get_paint_litres()
+        return paints_needed

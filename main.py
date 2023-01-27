@@ -85,6 +85,10 @@ if __name__ == "__main__":
             print("Wall object added to wall")
         building.walls.add(wall)
 
+    print("Paints needed:")
+    paint_amounts = building.get_paints_needed()
+    for i in paint_amounts:
+        print(f"{i}: {paint_amounts[i]} litres")
     print(f"Total cost: £{round(building.get_total_cost(), 2)}")
     a = input("Save Walls? Y/N ")
     if a.lower() in ("y", "yes", "1", "yeah"):
