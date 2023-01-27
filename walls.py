@@ -24,7 +24,8 @@ class Wall:
         Constructor for Wall class
         :param height: Height of the wall
         :param length: Length of the wall
-        :param wall_objects: Objects/obstructions on the wall, needs to be a list, tuple or set. Any duplicate wall objects will be removed
+        :param wall_objects: Objects/obstructions on the wall, needs to be a list, tuple or set. Any duplicate wall
+         objects will be removed
         :param paint: The paint to go on the wall. Must be a paint object or None for no paint
         :param number_of_coats: number of coats of paint. Defaults to 1
         """
@@ -97,14 +98,14 @@ class Wall:
         self._has_paint = False
         self._paint = None
 
-    def get_has_paint(self):
+    def get_has_paint(self) -> bool:
         """
         Returns true if the wall has a paint object
         :return: Bool indicating if the wall has a paint object
         """
         return self._has_paint
 
-    def get_paint(self):
+    def get_paint(self) -> Paint | None:
         return self._paint
 
 class Building:
@@ -119,7 +120,7 @@ class Building:
     def get_total_cost(self) -> float:
         """
         Gets the total cost of all the walls in the building
-        :return:
+        :return: cost of all the walls as a float
         """
         total_cost: float = 0
         for wall in self.walls:

@@ -3,7 +3,7 @@ from walls import Wall, WallObject, Building, Paint
 
 def get_valid_input(question_text: str, type_to_cast_to=float) -> float | int | str:
     """
-    Asks the user a given question, and then accepts user inputs until a input that cna be cast to the given data type
+    Asks the user a given question, and then accepts user inputs until an input that can be cast to the given data type
     is given
     :param question_text: The question to ask the user
     :param type_to_cast_to: The datatype to cast to. Can be float, int or string. Defaults to float
@@ -18,14 +18,14 @@ def get_valid_input(question_text: str, type_to_cast_to=float) -> float | int | 
             print("Invalid input")
 
 
-def select_from_list(array):
+def select_from_list(array: list | tuple):
     """
     For a given list, presents all items in the list as options to the user and allows the user to select an item
     :param array: the list to select from
     :return: the item from the list selected by the user
     """
     for i in range(len(array)):
-        print(i+1,array[i])
+        print(i+1, array[i])
     while True:
         user_input = get_valid_input("Choice of paint: ", int)
         if 1 <= user_input <= len(array):
@@ -33,12 +33,12 @@ def select_from_list(array):
         print("Invalid choice! Selection choice must be between 1 and", len(array))
 
 
-def get_paints_from_user():
+def get_paints_from_user() -> list:
     """
     Allows the user to input the number of paints, their names and prices per litre
     :return: a list of paint objects
     """
-    paints = []
+    paints: list = []
     number_of_paints: int = get_valid_input("How many different paints are going to be used? ", int)
     for i in range(number_of_paints):
         name = input("Paint name: ")
