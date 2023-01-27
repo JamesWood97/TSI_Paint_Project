@@ -108,14 +108,14 @@ class Wall:
             raise Exception("Attempted to remove", WallObject, "from", self,
                             "but the given WallObject was not on the wall")
 
-    def get_cost(self) -> float:
+    def get_cost(self) -> float | int:
         """
         Gets the cost to paint the wall
         :return: the cost
         """
         if self._has_paint:
             return self._area * self._paint.cost_per_litre * 1 / 12 * self.number_of_coats#average wall is approx 12m2, standard wall paint coveres 12-14m2 per liter, most walls need two coats, so 1.5-2 liters is a rough guide for a single wall.
-        return 0.0
+        return 0
 
     def set_paint(self, paint: Paint):
         """
@@ -144,6 +144,13 @@ class Wall:
 
     def get_paint(self) -> Paint | None:
         return self._paint
+
+    def get_height(self) -> float:
+        return self._height
+
+    def get_length(self) -> float:
+        return self._length
+
 
 class Building:
     """
