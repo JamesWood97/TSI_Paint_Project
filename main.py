@@ -2,7 +2,7 @@ from walls import Wall, WallObject, Building, Paint
 import paint_reader
 
 
-def get_valid_input(question_text: str, type_to_cast_to=float) -> float | int | str:
+def get_valid_input(question_text: str, type_to_cast_to=float, can_be_negative = False) -> float | int | str:
     """
     Asks the user a given question, and then accepts user inputs until an input that can be cast to the given data type
     is given
@@ -14,7 +14,10 @@ def get_valid_input(question_text: str, type_to_cast_to=float) -> float | int | 
         user_input = input(question_text + " ")
         try:
             float_user_input = type_to_cast_to(user_input)
-            return float_user_input
+            if not can_be_negative and float_user_input < 0:
+                print("Input must be greater than 0")
+            else:
+                return float_user_input
         except ValueError:
             print("Invalid input")
 
