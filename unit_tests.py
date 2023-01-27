@@ -1,9 +1,11 @@
 import unittest
-from main import *
+from walls import Wall
+from paint import Paint
 
 
-class WallTests(unittest.TestCase):
-    def create_wall(self):
+class TestWall(unittest.TestCase):
+
+    def test_create_wall(self):
         wall = Wall(2, 10, (), None, 1)
         self.assertIsInstance(wall, Wall)
 
@@ -24,18 +26,6 @@ class WallTests(unittest.TestCase):
     def wall_get_height(self):
         wall = Wall(2, 10, (), None, 1)
         self.assertEqual(wall.get_length(), 2)
-
-
-
-
-
-
-
-
-
-
-
-
 
 if __name__ == '__main__':
     unittest.main()
