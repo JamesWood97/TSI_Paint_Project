@@ -1,14 +1,44 @@
 from paint import Paint
+from math import pi
+
 
 class WallObject:#window or door
     """
     Object that obstructs part of a wall e.g a door or window
     """
-    def __init__(self, height: float, length: float):
-        self._shape = "rectangle"
+    def __init__(self, height: float, length: float, shape: str = "rectangle"):
+        shape = shape.lower()
+        if shape not in ("rectangle", "oval"):
+            raise Exception("Wall object shape must be rectangle or oval, not ", shape)
+        self._shape = shape
         self._height = height
         self._length = length
         self._area = height*length
+
+    def set_height(self, height: float | int):
+        """
+        Sets the height to the given height and recalculates the WallObjects' area
+        :param height: the new height
+        """
+        self._height = height
+        self._calculate_area()
+
+    def set_length(self, length: float | int):
+        """
+        Sets the length to the given height and recalculates the WallObjects' area
+        :param length: the new length
+        """
+        self._length = length
+        self._calculate_area()
+
+    def _calculate_area(self):
+        """
+        protected function to calculate the shapes area given its length and height and shape, saves area in self._area
+        """
+        if self._shape == "rectangle":
+            self._area = self._height * self._length
+        else:#if the shape is oval
+            self._area = (self._height / 2) * (self._length / 2) * pi
 
     def get_area(self) -> float:
         return self._area
