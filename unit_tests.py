@@ -14,9 +14,16 @@ class WallTests(unittest.TestCase):
     def set_wall_paint(self):
         wall = Wall(2, 10, (), None, 1)
         paint = Paint("bob", 10)
-        self.assertEqual(wall.get_area(), 20)
+        wall.set_paint(paint)
+        self.assertEqual(paint, wall.get_paint())
 
+    def wall_get_length(self):
+        wall = Wall(2, 10, (), None, 1)
+        self.assertEqual(wall.get_length(), 10)
 
+    def wall_get_height(self):
+        wall = Wall(2, 10, (), None, 1)
+        self.assertEqual(wall.get_length(), 2)
 
 
 
