@@ -7,6 +7,13 @@ class WallObject:#window or door
     Object that obstructs part of a wall e.g a door or window
     """
     def __init__(self, height: float, length: float, shape: str = "rectangle"):
+        """
+        Constructor for WallObject class
+        :param height: Height of the WallObject.
+        :param length: The length of the WallObject.
+        :param shape: The shape of the wall object, can be "rectangle" or "oval". For squares and circles use rectangle
+        and oval respectively with the same heights and lengths.
+        """
         shape = shape.lower()
         if shape not in ("rectangle", "oval"):
             raise Exception("Wall object shape must be rectangle or oval, not ", shape)
@@ -143,6 +150,10 @@ class Building:
     Building class. Contains a set of walls
     """
     def __init__(self, walls: tuple | list | set = ()):
+        """
+        Constructor for wall class
+        :param walls: An array fo walls to be added. Duplicate walls will be removed
+        """
         self.walls = set([])
         for wall in walls:
             self.walls.add(wall)
