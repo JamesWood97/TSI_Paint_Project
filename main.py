@@ -1,4 +1,5 @@
 from walls import Wall, WallObject, Building, Paint
+import paint_reader
 
 
 def get_valid_input(question_text: str, type_to_cast_to=float) -> float | int | str:
@@ -49,7 +50,12 @@ def get_paints_from_user() -> list:
 
 
 if __name__ == "__main__":
-    paints = get_paints_from_user()
+    paint_retrieval_method: str = select_from_list(["Load paints", "Input paints manually"])
+    if paint_retrieval_method == "Load paints":
+        paint_reader_object = paint_reader.PaintReader()
+        paints = paint_reader_object.read_paint_files()
+    else:
+        paints = get_paints_from_user()
 
     number_of_walls = get_valid_input("Number of walls to be painted: ", int)
 
